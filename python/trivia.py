@@ -123,8 +123,7 @@ class Game:
         print self.players[self.current_player] + " was sent to the penalty box"
         self.in_penalty_box[self.current_player] = True
         
-        self.current_player += 1
-        if self.current_player == len(self.players): self.current_player = 0
+        self.move_to_next_player()
         return True
     
     def hasWon(self):
