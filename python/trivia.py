@@ -100,7 +100,7 @@ class Game:
                     str(self.coinTally[self.current_player]) + \
                     ' Gold Coins.'
                 
-                winner = self._did_player_win()
+                winner = not self.hasWon()
                 self.current_player += 1
                 if self.current_player == len(self.players): self.current_player = 0
                 
@@ -121,7 +121,7 @@ class Game:
                 str(self.coinTally[self.current_player]) + \
                 ' Gold Coins.'
             
-            winner = self._did_player_win()
+            winner = not self.hasWon()
             self.current_player += 1
             if self.current_player == len(self.players): self.current_player = 0
             
@@ -136,8 +136,8 @@ class Game:
         if self.current_player == len(self.players): self.current_player = 0
         return True
     
-    def _did_player_win(self):
-        return not (self.coinTally[self.current_player] == 6)
+    def hasWon(self):
+        return (self.coinTally[self.current_player] == 6)
 
     def play(self):
         not_a_winner = False
