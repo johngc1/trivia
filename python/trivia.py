@@ -100,11 +100,11 @@ class Game:
                     str(self.coinTally[self.current_player]) + \
                     ' Gold Coins.'
                 
-                winner = not self.hasWon()
+                keepPlaying = not self.hasWon()
                 self.current_player += 1
                 if self.current_player == len(self.players): self.current_player = 0
                 
-                return winner
+                return keepPlaying
             else:
                 self.current_player += 1
                 if self.current_player == len(self.players): self.current_player = 0
@@ -121,11 +121,11 @@ class Game:
                 str(self.coinTally[self.current_player]) + \
                 ' Gold Coins.'
             
-            winner = not self.hasWon()
+            keepPlaying = not self.hasWon()
             self.current_player += 1
             if self.current_player == len(self.players): self.current_player = 0
             
-            return winner
+            return keepPlaying
     
     def wrong_answer(self):
         print 'Question was incorrectly answered'
