@@ -90,26 +90,29 @@ class Game:
         if self.places[self.current_player] == 10: return 'Sports'
         return 'Rock'
 
-    def someFunc(self):
+    def increment_coins(self):
         self.coinTally[self.current_player] += 1
         print self.players[self.current_player] + \
             ' now has ' + \
             str(self.coinTally[self.current_player]) + \
             ' Gold Coins.'
         
-        keepPlaying = not self.hasWon()
+    def finish_turn(self):
+        self.increment_coins()
+        keep_playing = not (self.coinTally[self.current_player] == 6)
+
         self.move_to_next_player()
         
-        return keepPlaying
+        return keep_playing
 
     def was_correctly_answered(self):
         if not self.in_penalty_box[self.current_player]:
             print "Answer was corrent!!!!"
-            return self.someFunc()
+            return self.finish_turn()
         
         if self.is_getting_out_of_penalty_box:
             print 'Answer was correct!!!!'
-            return self.someFunc()
+            return self.finish_turn()
 
         self.move_to_next_player()
         return True
@@ -126,9 +129,6 @@ class Game:
         self.move_to_next_player()
         return True
     
-    def hasWon(self):
-        return (self.coinTally[self.current_player] == 6)
-
     def play(self):
         not_a_winner = False
         self.roll(randrange(5) + 1)
