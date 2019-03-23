@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+
+def is_odd(roll):
+    return roll % 2 != 0
+
 class Game:
     def __init__(self):
         self.players = []
@@ -44,7 +48,7 @@ class Game:
         print "They have rolled a %s" % roll
         
         if self.in_penalty_box[self.current_player]:
-            if roll % 2 != 0:
+            if is_odd(roll):
                 self.is_getting_out_of_penalty_box = True
                 
                 print "%s is getting out of the penalty box" % self.players[self.current_player]
@@ -70,7 +74,7 @@ class Game:
                         str(self.places[self.current_player])
             print "The category is %s" % self._current_category
             self._ask_question()
-    
+
     def _ask_question(self):
         if self._current_category == 'Pop': print self.pop_questions.pop(0)
         if self._current_category == 'Science': print self.science_questions.pop(0)
