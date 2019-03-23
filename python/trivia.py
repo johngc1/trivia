@@ -98,26 +98,26 @@ class Game:
             ' Gold Coins.'
         
         keepPlaying = not self.hasWon()
-        self.current_player += 1
-        if self.current_player == len(self.players): self.current_player = 0
+        self.move_to_next_player()
         
         return keepPlaying
 
     def was_correctly_answered(self):
-        if self.in_penalty_box[self.current_player]:
-            if self.is_getting_out_of_penalty_box:
-                print 'Answer was correct!!!!'
-                return self.someFunc()
-
-            else:
-                self.current_player += 1
-                if self.current_player == len(self.players): self.current_player = 0
-                return True
-        else:
-            
+        if not self.in_penalty_box[self.current_player]:
             print "Answer was corrent!!!!"
             return self.someFunc()
-    
+        
+        if self.is_getting_out_of_penalty_box:
+            print 'Answer was correct!!!!'
+            return self.someFunc()
+
+        self.move_to_next_player()
+        return True
+
+    def move_to_next_player(self):
+        self.current_player += 1
+        if self.current_player == len(self.players): self.current_player = 0
+
     def wrong_answer(self):
         print 'Question was incorrectly answered'
         print self.players[self.current_player] + " was sent to the penalty box"
