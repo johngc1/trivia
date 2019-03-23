@@ -76,16 +76,16 @@ class Game:
     
     @property
     def _current_category(self):
-        if self.places[self.current_player] == 0: return 'Pop'
-        if self.places[self.current_player] == 4: return 'Pop'
-        if self.places[self.current_player] == 8: return 'Pop'
-        if self.places[self.current_player] == 1: return 'Science'
-        if self.places[self.current_player] == 5: return 'Science'
-        if self.places[self.current_player] == 9: return 'Science'
-        if self.places[self.current_player] == 2: return 'Sports'
-        if self.places[self.current_player] == 6: return 'Sports'
-        if self.places[self.current_player] == 10: return 'Sports'
-        return 'Rock'
+        current_position = self.places[self.current_player]
+        category = current_position % 4
+        if category == 0:
+            return "Pop"
+        elif category == 1:
+            return "Science"
+        elif category == 2:
+            return "Sports"
+        else:
+            return "Rock"
 
     def increment_coins(self):
         self.coinTally[self.current_player] += 1
