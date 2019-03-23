@@ -50,9 +50,8 @@ class Game:
                 self.is_getting_out_of_penalty_box = False
                 return
 
-            self.is_getting_out_of_penalty_box = True
-                
             print "%s is getting out of the penalty box" % self.players[self.current_player]
+            self.is_getting_out_of_penalty_box = True                
 
         self.move_player(roll)
         self._ask_question()
