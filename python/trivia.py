@@ -90,42 +90,33 @@ class Game:
         if self.places[self.current_player] == 10: return 'Sports'
         return 'Rock'
 
+    def someFunc(self):
+        self.coinTally[self.current_player] += 1
+        print self.players[self.current_player] + \
+            ' now has ' + \
+            str(self.coinTally[self.current_player]) + \
+            ' Gold Coins.'
+        
+        keepPlaying = not self.hasWon()
+        self.current_player += 1
+        if self.current_player == len(self.players): self.current_player = 0
+        
+        return keepPlaying
+
     def was_correctly_answered(self):
         if self.in_penalty_box[self.current_player]:
             if self.is_getting_out_of_penalty_box:
                 print 'Answer was correct!!!!'
-                self.coinTally[self.current_player] += 1
-                print self.players[self.current_player] + \
-                    ' now has ' + \
-                    str(self.coinTally[self.current_player]) + \
-                    ' Gold Coins.'
-                
-                keepPlaying = not self.hasWon()
-                self.current_player += 1
-                if self.current_player == len(self.players): self.current_player = 0
-                
-                return keepPlaying
+                return self.someFunc()
+
             else:
                 self.current_player += 1
                 if self.current_player == len(self.players): self.current_player = 0
                 return True
-            
-            
-            
         else:
             
             print "Answer was corrent!!!!"
-            self.coinTally[self.current_player] += 1
-            print self.players[self.current_player] + \
-                ' now has ' + \
-                str(self.coinTally[self.current_player]) + \
-                ' Gold Coins.'
-            
-            keepPlaying = not self.hasWon()
-            self.current_player += 1
-            if self.current_player == len(self.players): self.current_player = 0
-            
-            return keepPlaying
+            return self.someFunc()
     
     def wrong_answer(self):
         print 'Question was incorrectly answered'
