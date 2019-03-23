@@ -48,19 +48,19 @@ class Game:
         print "They have rolled a %s" % roll
         
         if self.in_penalty_box[self.current_player]:
-            if is_odd(roll):
-                self.is_getting_out_of_penalty_box = True
-                
-                print "%s is getting out of the penalty box" % self.players[self.current_player]
-                self.move_player(roll)
-                self._ask_question()
-            else:
+            if not is_odd(roll):
                 print "%s is not getting out of the penalty box" % self.players[self.current_player]
                 self.is_getting_out_of_penalty_box = False
-        else:
-            self.move_player(roll)
-            self._ask_question()
+                return
 
+            self.is_getting_out_of_penalty_box = True
+                
+            print "%s is getting out of the penalty box" % self.players[self.current_player]
+
+        self.move_player(roll)
+        self._ask_question()
+        
+        
     def move_player(self, roll):
         self.places[self.current_player] = self.places[self.current_player] + roll
         if self.places[self.current_player] > 11:
